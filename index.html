@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>libvaloa</title>
+<link href="http://fonts.googleapis.com/css?family=Quicksand:300|Open+Sans:400,800" rel="stylesheet" type="text/css">
+<link href="style.css" rel="stylesheet" type="text/css">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js" ></script>
+<link rel="stylesheet" href="external/highlight.js/styles/tomorrow.css">
+<script src="external/highlight.js/highlight.pack.js"></script>
+
+<script type="text/javascript">//<![CDATA[ 
+hljs.initHighlightingOnLoad();
+
+$(function(){
+
+ var currentHash = "#top"
+    $(document).scroll(function () {
+        $('article h2').each(function () {
+            var top = window.pageYOffset;
+            var distance = top - $(this).offset().top;
+            var hash = $(this).attr('id');
+            if (distance < 20 && distance > -20 && currentHash != hash) {
+                window.location.hash = (hash);
+                currentHash = hash;
+            }
+        });
+    });
+
+
+$('a[href^=#]').click(function(){
+var el = $(this).attr('href');
+var elWrapped = $(el);
+scrollToElement(elWrapped,800,el);
+return false;
+});
+
+$('header i.arrow-down').click(function(){
+	scrollToElement($('#slogan'),1200,'slogan');
+});
+
+function scrollToElement(element,speed,hash){
+var offsetTop = element.offset().top;
+$('body,html').animate({
+scrollTop: offsetTop
+}, speed, function(){window.location.hash = hash});
+}
+});
+
+
+//]]>  
+
+</script>
+</head>
+<body>
+<header id="top">
+    <div id="logo"><span>lib</span>valoa</div>
+    <nav>
+        <ul>
+            <li><a href="#what">What?</a></li>
+            <li><a href="#download">Download</a></li>
+            <li><a href="#demo">Demo</a></li>
+            <li><a href="#api">API</a></li>
+        </ul>
+    </nav>
+	<i class="arrow-down"></i>
+</header>
+
+<article id="slogan" class="transparent">
+    <h1>Libvaloa is something diipadaapa</h1>
+</article>
+
+<article class="what">
+	<a class="arrow-up" href="#top" title="Go to the top of the site"><i>^</i></a>
+    <h2 id="what"><a href="#what">What?</a></h2>
+    <p>The diipa of daapa is diipadaapa</p>
+</article>
+
+<article class="download">
+	 <a class="arrow-up" href="#top" title="Go to the top of the site"><i>^</i></a>
+    <h2 id="download"><a href="#download">Download</a></h2>
+    <p>Here you can download it</p>
+</article>
+
+<article class="demo">
+	 <a class="arrow-up" href="#top" title="Go to the top of the site"><i>^</i></a>
+	<h2 id="demo"><a href="#demo">Demo</a></h2>
+	<h3>A Simple Blog In 5 Minutes</h3>
+	<p>My money's in that office, right? If she start giving me some bullshit about it ain't there, and we got to go someplace else and get it, I'm gonna shoot you in the head then and there. Then I'm gonna shoot that bitch in the kneecaps, find out where my goddamn money is. She gonna tell me too. Hey, look at me when I'm talking to you, motherfucker. You listen: we go in there, and that nigga Winston or anybody else is in there, you the first motherfucker to get shot. You understand? </p>
+	<h4>Smaller Head</h4>
+	<p>Well, the way they make shows is, they make one show. That show's called a pilot. Then they show that show to the people who make shows, and on the strength of that one show they decide if they're going to make more shows. Some pilots get picked and become television programs. Some don't, become nothing. She starred in one of the ones that became nothing. </p>
+	<h5>Even smaller</h5>
+	<aside class="right">If you breathe, you will survive longer</aside>
+	<p>Normally, both your asses would be dead as fucking fried chicken, but you happen to pull this shit while I'm in a transitional period so I don't wanna kill you, I wanna help you. But I can't give you this case, it don't belong to me. Besides, I've already been through too much shit this morning over this case to hand it over to your dumb ass. </p>
+</article>
+
+<article class="api">
+ <a class="arrow-up" href="#top" title="Go to the top of the site"><i>^</i></a>
+	<h2 id="api"><a href="#api">API</a></h2>
+    <p>Here's how to use it</p>
+<h3>PHP</h3>
+	<pre><code class="php"><span class="keyword">require_once</span> <span class="string">'Zend/Uri/Http.php'</span>;
+
+<span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">URI</span> <span class="keyword">extends</span> <span class="title">BaseURI</span>
+{</span>
+
+  <span class="comment">/**
+   * Returns a URI
+   *
+   *<span class="phpdoc"> @return</span>  URI
+   */</span>
+  <span class="keyword">static</span> <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">_factory</span><span class="params">(<span class="variable">$stats</span> = array<span class="params">()</span>, <span class="variable">$uri</span> = <span class="string">'http'</span>)</span>
+  {</span>
+      <span class="variable">$uri</span> = explode(<span class="string">':'</span>, <span class="variable">$uri</span>, <span class="number">0b10</span>);
+      <span class="variable">$schemeSpecific</span> = <span class="keyword">isset</span>(<span class="variable">$uri</span>[<span class="number">1</span>]) ? <span class="variable">$uri</span>[<span class="number">1</span>] : <span class="string">''</span>;
+      <span class="variable">$desc</span> = <span class="string">'Multi
+line description'</span>;
+
+      <span class="comment">// Security check</span>
+      <span class="keyword">if</span> (!ctype_alnum(<span class="variable">$scheme</span>)) {
+          <span class="keyword">throw</span> <span class="keyword">new</span> Zend_Uri_Exception(<span class="string">'Illegal scheme'</span>);
+      }
+
+      <span class="keyword">return</span> [
+        <span class="string">'uri'</span> =&gt; <span class="variable">$uri</span>,
+        <span class="string">'value'</span> =&gt; <span class="keyword">null</span>,
+      ];
+  }
+}
+
+__halt_compiler () ;<span class="comment"> datahere
+datahere
+datahere */
+datahere</span></code></pre>
+
+<h3>XML</h3>
+<pre><code class="xml"><span class="pi">&lt;?xml version="1.0"?&gt;</span>
+<span class="tag">&lt;<span class="title">response</span> <span class="attribute">value</span>=<span class="value">"ok"</span> <span class="attribute">xml:lang</span>=<span class="value">"en"</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">text</span>&gt;</span>Ok<span class="tag">&lt;/<span class="title">text</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">comment</span> <span class="attribute">html_allowed</span>=<span class="value">"true"</span>/&gt;</span>
+  <span class="tag">&lt;<span class="title">ns1:description</span>&gt;</span><span class="cdata">&lt;![CDATA[
+  CDATA is &lt;not&gt; magical.
+  ]]&gt;</span><span class="tag">&lt;/<span class="title">ns1:description</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">a</span>&gt;</span> <span class="tag">&lt;<span class="title">a</span>/&gt;</span>
+<span class="tag">&lt;/<span class="title">response</span>&gt;</span>
+</code></pre>
+
+<h3>HTML</h3>
+<pre><code class="xml"><span class="doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;<span class="title">title</span>&gt;</span>Title<span class="tag">&lt;/<span class="title">title</span>&gt;</span>
+
+<span class="tag">&lt;<span class="title">style</span>&gt;</span><span class="css"><span class="tag">body</span> <span class="rules">{<span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">500</span>px;</span></span><span class="rule">}</span></span></span><span class="tag">&lt;/<span class="title">style</span>&gt;</span>
+
+<span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"application/javascript"</span>&gt;</span><span class="javascript">
+  <span class="function"><span class="keyword">function</span> <span class="title">$init</span><span class="params">()</span> {</span><span class="keyword">return</span> <span class="literal">true</span>;}
+</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+
+<span class="tag">&lt;<span class="title">body</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">p</span> <span class="attribute">checked</span> <span class="attribute">class</span>=<span class="value">"title"</span> <span class="attribute">id</span>=<span class="value">'title'</span>&gt;</span>Title<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+  <span class="comment">&lt;!-- here goes the rest of the page --&gt;</span>
+<span class="tag">&lt;/<span class="title">body</span>&gt;</span>
+</code></pre>
+
+<h3>CSS</h3>
+<pre><code class="css"><span class="at_rule">@<span class="keyword">media</span> screen and (-webkit-min-device-pixel-ratio: <span class="number">0</span>) </span>{
+  <span class="tag">body</span><span class="pseudo">:first-of-type</span> <span class="tag">pre</span><span class="pseudo">::after</span> <span class="rules">{
+    <span class="rule"><span class="attribute">content</span>:<span class="value"> <span class="string">'highlight: '</span> <span class="function">attr(class)</span>;</span></span>
+  <span class="rule">}</span></span>
+}
+
+<span class="at_rule">@<span class="keyword">import</span> <span class="function">url(<span class="string">'print.css'</span>)</span></span>;
+<span class="at_rule">@<span class="keyword">page</span></span><span class="pseudo">:right</span> <span class="rules">{
+ <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">1</span>cm <span class="number">2</span>cm <span class="number">1.3</span>cm <span class="number">4</span>cm;</span></span>
+<span class="rule">}</span></span>
+
+<span class="at_rule">@<span class="keyword">font-face</span></span> <span class="rules">{
+  <span class="rule"><span class="attribute">font-family</span>:<span class="value"> Chunkfive;</span></span> <span class="rule"><span class="attribute">src</span>:<span class="value"> <span class="function">url(<span class="string">'Chunkfive.otf'</span>)</span>;</span></span>
+<span class="rule">}</span></span>
+
+<span class="tag">div</span><span class="class">.text</span>,
+<span class="id">#content</span>,
+<span class="tag">li</span><span class="attr_selector">[lang=ru]</span> <span class="rules">{
+  <span class="rule"><span class="attribute">font</span>:<span class="value"> Tahoma, Chunkfive, sans-serif;</span></span>
+  <span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="function">url(<span class="string">'hatch.png'</span>)</span> <span class="comment">/* wtf? */</span>;</span></span>  <span class="rule"><span class="attribute">color</span>:<span class="value"> <span class="hexcolor">#F0F0F0</span> <span class="important">!important</span>;</span></span>
+  <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">100</span>%;</span></span>
+<span class="rule">}</span></span>
+</code></pre>
+
+<h3>JavaScript</h3>
+<pre><code class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">$initHighlight</span><span class="params">(block, flags)</span> {</span>
+  <span class="keyword">try</span> {
+    <span class="keyword">if</span> (block.className.search(<span class="regexp">/\bno\-highlight\b/</span>) != -<span class="number">1</span>)
+      <span class="keyword">return</span> processBlock(block, <span class="literal">true</span>, <span class="number">0x0F</span>) + <span class="string">' class=""'</span>;
+  } <span class="keyword">catch</span> (e) {
+    <span class="comment">/* handle exception */</span>
+
+    <span class="keyword">var</span> e4x =
+        <span class="xml"><span class="tag">&lt;<span class="title">div</span>&gt;</span>Example
+            <span class="tag">&lt;<span class="title">p</span>&gt;</span>1234<span class="tag">&lt;/<span class="title">p</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>;</span>
+  }
+  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span> / <span class="number">2</span>; i &lt; classes.length; i++) { <span class="comment">// "0 / 2" should not be parsed as regexp</span>
+    <span class="keyword">if</span> (checkCondition(classes[i]) === <span class="literal">undefined</span>)
+      <span class="keyword">return</span> <span class="regexp">/\d+/g</span>;
+  }
+}</code></pre>
+
+
+<h3>SQL</h3>
+<aside class="right">SQL stands for Structured Query Language</aside>
+<pre><code class="sql"><span class="operator"><span class="keyword">BEGIN</span>;</span>
+<span class="operator"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">"topic"</span> (
+    <span class="string">"id"</span> serial <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">PRIMARY</span> <span class="keyword">KEY</span>,
+    <span class="string">"forum_id"</span> <span class="keyword">integer</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,
+    <span class="string">"subject"</span> <span class="keyword">varchar</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>
+);</span>
+<span class="operator"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="string">"topic"</span> <span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> forum_id <span class="keyword">FOREIGN</span> <span class="keyword">KEY</span> (<span class="string">"forum_id"</span>) <span class="keyword">REFERENCES</span> <span class="string">"forum"</span> (<span class="string">"id"</span>);</span>
+
+<span class="comment">-- Initials</span>
+<span class="operator"><span class="keyword">insert</span> <span class="keyword">into</span> <span class="string">"topic"</span> (<span class="string">"forum_id"</span>, <span class="string">"subject"</span>) <span class="keyword">values</span> (<span class="number">2</span>, <span class="string">'D''artagnian'</span>);</span>
+
+<span class="operator"><span class="keyword">select</span> <span class="aggregate">count</span>(*) <span class="keyword">from</span> cicero_forum;</span>
+
+<span class="comment">-- this line lacks ; at the end to allow people to be sloppy and omit it in one-liners</span>
+<span class="operator"><span class="keyword">COMMIT</span></span></code></pre>
+
+</article>
+</body>
+</html>
